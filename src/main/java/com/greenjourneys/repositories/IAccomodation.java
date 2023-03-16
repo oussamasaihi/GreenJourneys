@@ -1,4 +1,7 @@
 package com.greenjourneys.repositories;
 
-public interface IAccomodation {
+import com.greenjourneys.entities.Accomodation;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IAccomodation extends JpaRepository<Accomodation,Long> {
 }

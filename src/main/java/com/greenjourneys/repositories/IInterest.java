@@ -1,4 +1,7 @@
 package com.greenjourneys.repositories;
 
-public interface IInterest {
+import com.greenjourneys.entities.Interest;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IInterest extends JpaRepository<Interest,Long> {
 }

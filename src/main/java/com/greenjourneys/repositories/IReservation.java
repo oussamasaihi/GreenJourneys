@@ -1,4 +1,7 @@
 package com.greenjourneys.repositories;
 
-public interface IReservation {
+import com.greenjourneys.entities.Reservation;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IReservation extends JpaRepository<Reservation,Long> {
 }

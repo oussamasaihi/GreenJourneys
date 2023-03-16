@@ -1,4 +1,7 @@
 package com.greenjourneys.repositories;
 
-public interface ITransport {
+import com.greenjourneys.entities.Transport;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ITransport extends JpaRepository<Transport,Long> {
 }

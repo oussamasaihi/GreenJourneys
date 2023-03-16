@@ -1,4 +1,7 @@
 package com.greenjourneys.repositories;
 
-public interface IComment {
+import com.greenjourneys.entities.Comment;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IComment extends JpaRepository<Comment,Long> {
 }

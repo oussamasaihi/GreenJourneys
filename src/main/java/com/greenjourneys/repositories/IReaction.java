@@ -1,4 +1,7 @@
 package com.greenjourneys.repositories;
 
-public interface IReaction {
+import com.greenjourneys.entities.Reaction;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IReaction extends JpaRepository<Reaction,Long> {
 }

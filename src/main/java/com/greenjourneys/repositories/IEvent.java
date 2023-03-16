@@ -1,4 +1,7 @@
 package com.greenjourneys.repositories;
 
-public interface IEvent {
+import com.greenjourneys.entities.Event;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IEvent extends JpaRepository<Event,Long> {
 }

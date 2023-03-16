@@ -1,4 +1,7 @@
 package com.greenjourneys.repositories;
 
-public interface IUser {
+import com.greenjourneys.entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IUser extends JpaRepository<User,Long> {
 }
