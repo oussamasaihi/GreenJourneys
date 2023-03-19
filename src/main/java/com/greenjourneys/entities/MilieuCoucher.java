@@ -12,22 +12,19 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Accomodation {
+public class MilieuCoucher {
     @Id
-    long idAccomodation;
-    String name ;
-    long Telnumber;
-    String Address ;
-    String email ;
-    TypeAccomodation typeAcc ;
-    int Stars ;
+    long idM ;
+    int NombreLits ;
+    long Prix;
+    int NbChambres ;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Accomodation that = (Accomodation) o;
-        return Objects.equals(getIdAccomodation(), that.getIdAccomodation());
+        MilieuCoucher that = (MilieuCoucher) o;
+        return Objects.equals(getIdM(), that.getIdM());
     }
 
     @Override
