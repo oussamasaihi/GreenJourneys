@@ -1,4 +1,7 @@
 package com.greenjourneys.services;
 
-public interface ICommentService {
+import com.greenjourneys.entities.Comment;
+import com.greenjourneys.generic.IGenericService;
+
+public interface ICommentService extends IGenericService<Comment,Long> {
 }

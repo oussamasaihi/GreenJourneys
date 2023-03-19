@@ -1,4 +1,7 @@
 package com.greenjourneys.services;
 
-public interface IMilieuCoucherService {
+import com.greenjourneys.entities.MilieuCoucher;
+import com.greenjourneys.generic.IGenericService;
+
+public interface IMilieuCoucherService extends IGenericService<MilieuCoucher,Long> {
 }

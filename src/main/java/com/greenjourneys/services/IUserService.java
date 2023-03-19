@@ -1,4 +1,7 @@
 package com.greenjourneys.services;
 
-public interface IUserService {
+import com.greenjourneys.entities.User;
+import com.greenjourneys.generic.IGenericService;
+
+public interface IUserService extends IGenericService<User,Long> {
 }

@@ -1,4 +1,7 @@
 package com.greenjourneys.services;
 
-public interface IEventService {
+import com.greenjourneys.entities.Event;
+import com.greenjourneys.generic.IGenericService;
+
+public interface IEventService extends IGenericService<Event,Long> {
 }

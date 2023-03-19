@@ -3,35 +3,24 @@ package com.greenjourneys.entities;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Getter
-@Setter
 @ToString
-@RequiredArgsConstructor
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
 public class Accomodation {
     @Id
-    long idAccomodation;
-    String name ;
-    long Telnumber;
-    String Address ;
-    String email ;
-    TypeAccomodation typeAcc ;
-    int Stars ;
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
+    private long idAccomodation;
+    private String name ;
+    private long Telnumber;
+    private String Address ;
+    private String email ;
+    @Enumerated(EnumType.STRING)
+    private TypeAccomodation typeAcc ;
+    private int Stars ;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Accomodation that = (Accomodation) o;
-        return Objects.equals(getIdAccomodation(), that.getIdAccomodation());
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

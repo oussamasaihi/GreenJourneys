@@ -1,4 +1,7 @@
 package com.greenjourneys.services;
 
-public interface IAccomodationService {
+import com.greenjourneys.entities.Accomodation;
+import com.greenjourneys.generic.IGenericService;
+
+public interface IAccomodationService extends IGenericService<Accomodation,Long> {
 }

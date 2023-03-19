@@ -1,4 +1,7 @@
 package com.greenjourneys.services;
 
-public interface IPublicationService {
+import com.greenjourneys.entities.Publication;
+import com.greenjourneys.generic.IGenericService;
+
+public interface IPublicationService extends IGenericService<Publication,Long> {
 }
