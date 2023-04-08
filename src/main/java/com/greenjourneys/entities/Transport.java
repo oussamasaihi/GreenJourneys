@@ -14,7 +14,6 @@ public class Transport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
-
     private Integer idTransport;
     @Enumerated(EnumType.STRING)
     private Type_Moyen type_moyen;

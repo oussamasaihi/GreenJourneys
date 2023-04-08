@@ -1,4 +1,45 @@
 package com.greenjourneys.services;
 
-public class TransportService {
+import com.greenjourneys.entities.Transport;
+import com.greenjourneys.repositories.ITransportRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class TransportService implements ITransportService{
+
+    @Autowired
+    ITransportRepository transportRepository;
+
+    @Override
+    public Transport add(Transport t) {
+        return transportRepository.save(t);
+    }
+
+    @Override
+    public Transport update(Transport t) {
+        return transportRepository.save(t);
+    }
+
+    @Override
+    public Transport retrieveById(Integer id) {
+//        return eventRepository.findById(id).get();
+        return transportRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Transport> retrieveAll() {
+        return transportRepository.findAll();
+    }
+
+    @Override
+    public Boolean delete(Integer id) {
+        if (transportRepository.existsById(id)) {
+            transportRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 }

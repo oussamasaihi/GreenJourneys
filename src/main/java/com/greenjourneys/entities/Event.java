@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @ToString
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
-
 public class Event {
 
     @Id

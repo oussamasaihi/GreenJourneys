@@ -1,7 +1,7 @@
 package com.greenjourneys.entities;
 
 public enum Type_Moyen {
-   Train,
+    Train,
     Avion,
     Bus,
     Voiture,
