@@ -1,11 +1,12 @@
 package com.greenjourneys.generic;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 public class GenericController <T,ID> {
-    //@Autowired
+    @Autowired
     IGenericService<T,ID> genericService;
 
     @PostMapping()

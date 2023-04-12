@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class AccomodationService extends IGenericServiceImp<Accomodation,Long> implements IAccomodationService {
-
     private final IAccomodation iAccomodation;
     private final IChambre iChambre;
     @Autowired

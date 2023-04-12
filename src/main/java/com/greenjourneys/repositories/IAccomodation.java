@@ -2,12 +2,8 @@ package com.greenjourneys.repositories;
 
 
 import com.greenjourneys.entities.Accomodation;
-import com.greenjourneys.entities.Reservation;
-import com.greenjourneys.entities.TypeAccomodation;
-import com.greenjourneys.generic.BaseRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.Set;
-
-public interface IAccomodation extends BaseRepository<Accomodation, Long> {
+public interface IAccomodation extends JpaRepository<Accomodation, Long> {
 }
