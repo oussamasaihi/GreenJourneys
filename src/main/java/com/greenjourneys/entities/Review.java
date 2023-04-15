@@ -19,12 +19,20 @@ public class Review implements Serializable {
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
     )
-    private long idReview;
+    @Column(name = "idReview")
+    private long id;
+    @Column(name = "rate from 1 to 5")
     private int rate;
+    @Column(name = "Comment to Review")
     private String comment;
     @JsonIgnore
-    @OneToMany(
-            mappedBy = "Activity"
-    )
-    List<Activity> activities;
+    @ManyToOne
+    private Activity activity;
+    @ManyToOne
+    private Event event;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
 }

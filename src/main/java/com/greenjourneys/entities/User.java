@@ -3,19 +3,23 @@ package com.greenjourneys.entities;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@NoArgsConstructor @AllArgsConstructor
 public class User {
     @Id
-    long id_user ;
+    @GeneratedValue(
+            strategy = GenerationType.IDENTITY
+    )
+    @Column(name = "id_User")
+    long id ;
     String nom ;
     String prenom ;
     LocalDate Date_naissance ;
@@ -23,17 +27,12 @@ public class User {
     String MotDePasse ;
     long numtel ;
     Role role ;
+    @OneToMany(mappedBy = "user")
+    private List<Activity> activities;
+    @OneToMany(mappedBy = "user")
+    private List<Event> events;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        User user = (User) o;
-        return  Objects.equals(getId_user(), user.getId_user());
-    }
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviews;
 
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

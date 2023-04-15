@@ -6,6 +6,8 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -36,5 +38,11 @@ public class Event implements Serializable {
     private String Description;
     @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "review_id")
+    private Review review;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
+    @OneToMany(mappedBy = "Event")
+    private List<Review> reviews;
 }

@@ -3,41 +3,62 @@ package com.greenjourneys.services;
 import com.greenjourneys.entities.Review;
 import com.greenjourneys.generic.IGenericServiceImp;
 import com.greenjourneys.repositories.IReview;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 public class ReviewService extends IGenericServiceImp<Review, Long> implements IReviewService {
-    private final IReview iReview;
+    @Autowired
+    IReview iReview;
 
-    public List<Review> retrieveAll() {
-        return super.retrieveAll();
+    @Override
+    public Optional<Review> getReviewbyId(Long id) {
+        return iReview.findById(id);
     }
 
-    public Review retrieveById(Long aLong) {
-        return (Review)super.retrieveById(aLong);
+    @Override
+    public Review saveReview(Review review) {
+        return iReview.save(review);
     }
 
-    public Review update(Review entity) {
-        return (Review)super.update(entity);
+    @Override
+    public List<Review> saveReviews(List<Review> listReviews) {
+        return iReview.saveAll(listReviews);
     }
 
-    public Review add(Review entity) {
-        return (Review)super.add(entity);
+    @Override
+    public Review updateReview(Review review, Long id) {
+        return iReview.save(review);
     }
 
-    public Boolean delete(Long aLong) {
-        return super.delete(aLong);
+    @Override
+    public List<Review> updateReviews(List<Review> listReviews) {
+        return iReview.saveAll(listReviews);
     }
 
-    public Review getReviewbyId() {
-        return this.iReview.findById();
+    @Override
+    public void deleteReviewById(Long id) {
+        iReview.deleteById(id);
+
     }
 
-    public ReviewService(final IReview iReview) {
-        this.iReview = iReview;
+    @Override
+    public void deleteReview(Review review) {
+        iReview.delete(review);
     }
+
+    @Override
+    public Page<Review> listeRewiews(Pageable pageable) {
+       return iReview.findAll(pageable);
+    }
+    /*review Eevent
+    /review accomodation
+    /review Activity*/
 }

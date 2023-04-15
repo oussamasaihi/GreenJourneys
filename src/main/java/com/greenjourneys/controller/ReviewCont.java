@@ -3,48 +3,24 @@ package com.greenjourneys.controller;
 import com.greenjourneys.entities.Review;
 import com.greenjourneys.generic.GenericController;
 import com.greenjourneys.services.IReviewService;
+import com.greenjourneys.services.ReviewService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping({"/Reviews"})
-@CrossOrigin(
-        origins = {"http://localhost:4200"}
-)
-/*@Tag(
+@CrossOrigin( origins = {"http://localhost:4200"} )
+@Tag(
         name = "Reviews",
-        description = "Reviews of Activities and Accomodations"
-)*/
+        description = "Reviews of Activities , Accomodations and Events "
+)
 public class ReviewCont extends GenericController<Review, Long> {
-    private final IReviewService reviewService;
+    @Autowired
+    ReviewService reviewService;
 
-    public List<Review> retrieveAll() {
-        return this.reviewService.retrieveAll();
-    }
 
-    @PostMapping
-    public Review add(Review entity) {
-        return (Review)this.reviewService.add(entity);
-    }
-
-    @GetMapping({"/{id}"})
-    public Review retrieveById(Long aLong) {
-        return (Review)this.reviewService.retrieveById(aLong);
-    }
-
-    @PutMapping
-    public Review update(Review entity) {
-        return (Review)this.reviewService.update(entity);
-    }
-
-    @DeleteMapping({"/{id}"})
-    public Boolean delete(Long aLong) {
-        return this.reviewService.delete(aLong);
-    }
-
-    public ReviewCont(IReviewService reviewService) {
-        this.reviewService = reviewService;
-    }
 }

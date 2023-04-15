@@ -25,6 +25,12 @@ public class Activity implements Serializable {
     private String Description;
     private String Address;
     @JsonIgnore
-    @OneToMany
-    List<User> users;
+    @ManyToOne
+    @JoinColumn(name = "review_id")
+    private Review review;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @OneToMany(mappedBy = "activity")
+    private List<Review> reviews;
 }
