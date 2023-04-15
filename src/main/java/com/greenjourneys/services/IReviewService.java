@@ -4,11 +4,13 @@ import com.greenjourneys.entities.Review;
 import com.greenjourneys.generic.IGenericService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IReviewService extends IGenericService<Review, Long> {
+
     Optional<Review> getReviewbyId(Long id);
     Review saveReview(Review review);
     List<Review> saveReviews(List<Review> listReviews);
