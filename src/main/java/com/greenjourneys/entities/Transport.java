@@ -18,7 +18,6 @@ public class Transport {
     @Enumerated(EnumType.STRING)
     private Type_Moyen type_moyen;
     private Long distance;
-
     @ManyToOne
     private User user;
 

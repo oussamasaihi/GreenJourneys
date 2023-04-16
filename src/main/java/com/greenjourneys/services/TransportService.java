@@ -1,7 +1,7 @@
 package com.greenjourneys.services;
 
 import com.greenjourneys.entities.Transport;
-import com.greenjourneys.repositories.ITransportRepository;
+import com.greenjourneys.repositories.TransportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class TransportService implements ITransportService{
 
     @Autowired
-    ITransportRepository transportRepository;
+    TransportRepository transportRepository;
 
     @Override
     public Transport add(Transport t) {
