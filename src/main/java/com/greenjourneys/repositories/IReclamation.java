@@ -13,5 +13,5 @@ public interface IReclamation extends JpaRepository<Reclamation,Long> {
     List<Reclamation> reclamationsNonTratitees();
 
     @Query("select r from Reclamation r where r.etat=?1")
-    List<Reclamation> findReclamationByEtat();
+    List<Reclamation> findReclamationByEtat(boolean etat);
 }

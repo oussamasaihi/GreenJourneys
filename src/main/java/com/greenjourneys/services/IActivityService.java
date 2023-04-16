@@ -1,6 +1,7 @@
 package com.greenjourneys.services;
 
 import com.greenjourneys.entities.Activity;
+import com.greenjourneys.entities.Reclamation;
 import com.greenjourneys.entities.Review;
 import com.greenjourneys.generic.IGenericService;
 
@@ -8,6 +9,8 @@ import java.util.List;
 
 public interface IActivityService extends IGenericService<Activity,Long> {
     Activity add(Activity entity);
+
+    List<Activity> updateActivities(List<Activity> listActivities);
 
     Activity update(Activity entity);
 
@@ -19,5 +22,5 @@ public interface IActivityService extends IGenericService<Activity,Long> {
 
     Activity getActivityByReview(Activity act, Review Rev);
 
-    Review assignReviewToActivity(Long idActivity, long IdReview);
+
 }

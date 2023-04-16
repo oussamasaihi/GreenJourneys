@@ -5,9 +5,7 @@ import com.greenjourneys.entities.Activity;
 import com.greenjourneys.entities.Review;
 import com.greenjourneys.entities.User;
 import com.greenjourneys.generic.IGenericServiceImp;
-import com.greenjourneys.repositories.IActivity;
-import com.greenjourneys.repositories.IReview;
-import com.greenjourneys.repositories.IUser;
+import com.greenjourneys.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +24,7 @@ public class ReviewService extends IGenericServiceImp<Review, Long> implements I
     IReview iReview;
     @Autowired
     IUser iUser ;
-    @Autowired
-    IActivity iActivity ;
+
 
     @Override
     public Optional<Review> getReviewbyId(Long id) {
@@ -71,5 +69,38 @@ public class ReviewService extends IGenericServiceImp<Review, Long> implements I
     /*review Eevent
     /review accomodation
     /review Activity*/
+    @Override
+    public void assignReviewToActivity(Long idActivity, Long id) {
+
+        iReview.assignReviewToActivity(idActivity,id);
+    }
+
+    @Override
+    public void assignReviewToAccomodation(Long idAccomodation, Long id) {
+        iReview.assignReviewToAccomodation(idAccomodation,id);
+    }
+
+    @Override
+    public void assignReviewToEvent(Long idEvent, Long id) {
+        iReview.assignReviewToEvent(idEvent,id);
+    }
+
+    @Override
+    public List<Review> getReviewsByType(String entity) {
+        List<Review> reviews = new ArrayList<>();
+
+        // hne bech yrajja3 e les reviews lkol 7asb activity , accomodation walla event 
+        if ("accommodation".equalsIgnoreCase(entity)) {
+            reviews = iReview.findAllByAccommodationIsNotNull();
+        } else if ("activity".equalsIgnoreCase(entity)) {
+            reviews = iReview.findAllByActivityIsNotNull();
+        } else if ("event".equalsIgnoreCase(entity)) {
+            reviews = iReview.findAllByEventIsNotNull();
+        } else {
+            throw new IllegalArgumentException("Invalid entity type: " + entity);
+        }
+
+        return reviews;
+    }
 
 }

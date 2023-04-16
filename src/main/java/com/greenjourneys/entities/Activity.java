@@ -24,13 +24,15 @@ public class Activity implements Serializable {
     private String Region;
     private String Description;
     private String Address;
+
+    public static List<Review> getReviews() {
+        return reviews;
+    }
+
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "review_id")
-    private Review review;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
     @OneToMany(mappedBy = "activity")
-    private List<Review> reviews;
+    private static List<Review> reviews;
 }

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.persistence.Entity;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,4 +20,9 @@ public interface IReviewService extends IGenericService<Review, Long> {
     void deleteReviewById(Long id);
     void deleteReview(Review review);
     Page<Review> listeRewiews(Pageable pageable);
+    public void assignReviewToActivity(Long idActivity, Long id) ;
+    public void assignReviewToAccomodation(Long idAccomodation, Long id) ;
+    public void assignReviewToEvent(Long idEvent, Long id) ;
+
+    public List<Review> getReviewsByType (String entity) ;
 }

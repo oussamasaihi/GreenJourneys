@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -22,5 +23,7 @@ public class Accomodation {
     @Enumerated(EnumType.STRING)
     private TypeAccomodation typeAcc ;
     private int Stars ;
+    @OneToMany(mappedBy = "accomodation")
+    private static List<Review> reviews;
 
 }
