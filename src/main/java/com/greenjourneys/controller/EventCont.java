@@ -5,6 +5,7 @@ import com.greenjourneys.services.IEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.*;
@@ -48,44 +49,19 @@ public class EventCont {
         return eventService.delete(id);
     }
 
-    @PostMapping(value = "/event/sendMail")
+    @PostMapping(value = "/event/sendMail/{id_event}")
     @ResponseBody
-    String sendMail(@RequestBody Event event, @RequestParam List<String> recipients) throws MessagingException {
-        String from = "sender@example.com"; // replace with actual sender email address
-
-        // Get system properties
-        Properties properties = System.getProperties();
-
-        // Setup mail server
-        properties.setProperty("mail.smtp.host", "smtp.gmail.com"); // replace with your SMTP server host
-
-        // Get the default Session object.
-        Session session = Session.getDefaultInstance(properties);
-
-        // Create a default MimeMessage object.
-        MimeMessage message = new MimeMessage(session);
-
-        // Set From: header field of the header.
-        message.setFrom(new InternetAddress(from));
-
-        // Set To: header field of the header.
-        for (String recipient : recipients) {
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-        }
-
-        // Set Subject: header field
-        message.setSubject("New event created: " + event.getNomEvent());
-
-        // Now set the actual message
-        message.setText("A new event has been created with the following details:\n\n" +
+    String sendMail(@RequestBody List<String> recipients, @PathVariable("id_event") Long idEvent) {
+        Event event = eventService.retrieveById(idEvent);
+        String text = "A new event has been created with the following details:\n\n" +
                 "Name: " + event.getNomEvent() + "\n" +
                 "Date: " + event.getDateDebutEvent() + "\n" +
                 "Location: " + event.getRegionEvent() + "\n" +
-                "Description: " + event.getDescriptionEvent() + "\n");
-
-        // Send message
-        Transport.send(message);
-
+                "Description: " + event.getDescriptionEvent() + "\n";
+        String subject = "New Event";
+        for (String to: recipients) {
+            eventService.sendMail(to, subject, text);
+        }
         return "Mail sent successfully!";
     }
 

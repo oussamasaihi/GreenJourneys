@@ -3,12 +3,17 @@ package com.greenjourneys.services;
 import com.greenjourneys.entities.Event;
 import com.greenjourneys.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class EventService implements IEventService {
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Autowired
     EventRepository eventRepository;
@@ -41,5 +46,16 @@ public class EventService implements IEventService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void sendMail(String to, String subject, String text) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(text);
+
+        mailSender.send(message);
+
     }
 }
