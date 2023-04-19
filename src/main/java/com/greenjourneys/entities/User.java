@@ -1,5 +1,6 @@
 package com.greenjourneys.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -19,20 +20,29 @@ public class User {
             strategy = GenerationType.IDENTITY
     )
     @Column(name = "id_User")
-    long id ;
-    String nom ;
-    String prenom ;
-    LocalDate Date_naissance ;
-    String email ;
-    String MotDePasse ;
-    long numtel ;
-    Role role ;
-    @OneToMany(mappedBy = "user")
-    private List<Activity> activities;
-    @OneToMany(mappedBy = "user")
-    private List<Event> events;
-
+    private long id_User ;
+    private String nom ;
+    private String prenom ;
+    private LocalDate Date_naissance ;
+    private String email ;
+    private String MotDePasse ;
+    private long numtel ;
+    private Role role ;
+    @JsonIgnore
+    @OneToOne
+    private Accomodation accomodation ;
+    @JsonIgnore
+    @OneToOne
+    private Activity activity ;
+    @JsonIgnore
+    @OneToOne
+    private Event event ;
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
+    @JsonIgnore
+    @OneToMany
+    private List<Reclamation> reclamations;
+
 
 }

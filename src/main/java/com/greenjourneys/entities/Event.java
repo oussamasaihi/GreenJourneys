@@ -11,11 +11,10 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Builder // bech nasna3 ay type de constructeur
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Event implements Serializable {
+public class Event implements Serializable{
     @Id
     private long IdEvent;
     @Temporal(TemporalType.DATE)
@@ -33,9 +32,13 @@ public class Event implements Serializable {
             columnDefinition = "boolean default false"
     )
     private Boolean archive = false;
-    private String Region;
-    private String Nom;
-    private String Description;
+    private String region;
+    private String nom;
+    private String description;
+    @JsonIgnore
+    @OneToMany
+    List<Review> reviewsEvent ;
+
 
 
 

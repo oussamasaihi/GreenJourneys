@@ -10,10 +10,9 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Builder // bech nasna3 ay type de constructeur
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
+
 public class Activity implements Serializable {
     @Id
     @GeneratedValue(
@@ -25,14 +24,14 @@ public class Activity implements Serializable {
     private String Description;
     private String Address;
 
-    public static List<Review> getReviews() {
-        return reviews;
-    }
-
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    @OneToMany(mappedBy = "activity")
-    private static List<Review> reviews;
+    public List<Review> getReviewsActivity() {
+        return reviewsActivity;
+    }
+    @JsonIgnore
+    @OneToMany
+    List<Review> reviewsActivity ;
+    @JsonIgnore
+    @OneToOne
+    User user ;
 }

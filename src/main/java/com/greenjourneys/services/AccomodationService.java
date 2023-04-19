@@ -4,6 +4,6 @@ import com.greenjourneys.entities.Accomodation;
 
 import java.util.List;
 
-public class AccomodationService implements IAccomodationService{
+public class AccomodationService {
 
 }

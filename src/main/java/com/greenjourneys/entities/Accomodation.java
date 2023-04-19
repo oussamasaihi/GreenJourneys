@@ -1,9 +1,11 @@
 package com.greenjourneys.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,7 +13,7 @@ import java.util.Objects;
 @ToString
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class Accomodation {
+public class Accomodation implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -19,11 +21,17 @@ public class Accomodation {
     private String name ;
     private long Telnumber;
     private String Address ;
-    private String email ;
+    private String Email ;
     @Enumerated(EnumType.STRING)
     private TypeAccomodation typeAcc ;
     private int Stars ;
-    @OneToMany(mappedBy = "accomodation")
-    private static List<Review> reviews;
+    @JsonIgnore
+    @OneToOne
+    User user ;
+    @JsonIgnore
+    @OneToMany
+    List<Review> reviewsAcc ;
+
+
 
 }

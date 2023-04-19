@@ -1,5 +1,6 @@
 package com.greenjourneys.generic;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -7,7 +8,7 @@ import java.util.List;
 
 public class IGenericServiceImp<T,ID> implements IGenericService<T,ID> {
 
-    @Autowired
+
     JpaRepository<T, ID> baseRepository;
 
     public IGenericServiceImp() {

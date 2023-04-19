@@ -6,6 +6,7 @@ import com.greenjourneys.entities.Review;
 import com.greenjourneys.entities.User;
 import com.greenjourneys.generic.IGenericServiceImp;
 import com.greenjourneys.repositories.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,12 +20,10 @@ import java.util.Optional;
 
 @Service
 @Transactional
+
 public class ReviewService extends IGenericServiceImp<Review, Long> implements IReviewService {
     @Autowired
     IReview iReview;
-    @Autowired
-    IUser iUser ;
-
 
     @Override
     public Optional<Review> getReviewbyId(Long id) {
@@ -85,11 +84,11 @@ public class ReviewService extends IGenericServiceImp<Review, Long> implements I
         iReview.assignReviewToEvent(idEvent,id);
     }
 
-    @Override
+
     public List<Review> getReviewsByType(String entity) {
         List<Review> reviews = new ArrayList<>();
 
-        // hne bech yrajja3 e les reviews lkol 7asb activity , accomodation walla event 
+        // hne bech yrajja3 e les reviews lkol 7asb activity , accomodation walla event
         if ("accommodation".equalsIgnoreCase(entity)) {
             reviews = iReview.findAllByAccommodationIsNotNull();
         } else if ("activity".equalsIgnoreCase(entity)) {

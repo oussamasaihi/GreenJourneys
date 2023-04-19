@@ -2,17 +2,17 @@ package com.greenjourneys.controller;
 
 import com.greenjourneys.entities.Reclamation;
 import com.greenjourneys.services.ReclamationService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
-import io.swagger.v3.oas.annotations.Operation;
+
 
 import java.util.List;
 
@@ -107,7 +107,9 @@ public class ReclamationCont {
         Page<Reclamation> pageResult =reclamationService.listeReclamations(pageRequest);
         return pageResult;
     }
+
     /********************************Get Reclamations Non Traitees************************************/
+
     @Operation(summary = "Get All Reclamations Non Traitees", description = "Retourne la liste des Reclamations Non Traitees")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the Reclamation",content = {
@@ -121,6 +123,7 @@ public class ReclamationCont {
         return liste;
     }
     /********************************Get Reclamations Traitees************************************/
+
     @Operation(summary = "Get All Reclamations Traitees", description = "Retourne la liste des Reclamations Traitees")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the Reclamation",content = {
@@ -135,6 +138,7 @@ public class ReclamationCont {
     }
 
     /********************************Traiter Reclamation************************************/
+
     @Operation(summary = "Set Etat True", description = "Traite une reclamation")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the Reclamation",content = {

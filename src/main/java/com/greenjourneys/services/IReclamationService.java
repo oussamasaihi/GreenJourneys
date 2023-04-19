@@ -1,12 +1,13 @@
 package com.greenjourneys.services;
 
 import com.greenjourneys.entities.Reclamation;
+import com.greenjourneys.repositories.IReclamation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface IReclamationService {
+public interface IReclamationService  {
 
         Reclamation saveReclamation(Reclamation reclamation);
         List<Reclamation> saveReclamations(List<Reclamation> listReclamations);

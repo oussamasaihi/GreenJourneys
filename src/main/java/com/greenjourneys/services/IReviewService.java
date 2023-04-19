@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import java.util.List;
 import java.util.Optional;
 
-public interface IReviewService extends IGenericService<Review, Long> {
+public interface IReviewService {
 
     Optional<Review> getReviewbyId(Long id);
     Review saveReview(Review review);

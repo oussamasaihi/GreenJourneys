@@ -13,11 +13,11 @@ import java.util.List;
 
 @Service
 @Slf4j
-
+@RequiredArgsConstructor
 public class ReclamationService implements IReclamationService{
 
-    @Autowired
-    IReclamation iReclamation ;
+
+    private final IReclamation iReclamation ;
 
     @Override
     public Reclamation saveReclamation(Reclamation reclamation) {return iReclamation.save(reclamation);}

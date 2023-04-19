@@ -10,32 +10,31 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Builder // bech nasna3 ay type de constructeur
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 public class Review implements Serializable {
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
     )
-    @Column(name = "idReview")
+
     private long id;
-    @Column(name = "rate from 1 to 5")
+
     private int rate;
-    @Column(name = "Comment to Review")
-    private String comment;
+
+    private String comment ;
     @JsonIgnore
     @ManyToOne
     private Activity activity;
+    @JsonIgnore
+    @ManyToOne
+    private Accomodation accomodation;
+    @JsonIgnore
     @ManyToOne
     private Event event;
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
-    @ManyToOne
-    private Accomodation accomodation ;
-
 
 
 }

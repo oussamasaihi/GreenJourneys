@@ -8,7 +8,6 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
@@ -29,7 +28,6 @@ public class Reclamation {
     @Column(name = "etat", columnDefinition = "boolean default false")
     private Boolean etat=false;
 
-    @ManyToOne
-    User user;
+
 
 }
