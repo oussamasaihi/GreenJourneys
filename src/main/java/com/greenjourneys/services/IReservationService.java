@@ -8,4 +8,5 @@ import java.time.LocalDate;
 
 public interface IReservationService extends IGenericService<Reservation,Long> {
     public Reservation getProcheRes(LocalDate dateDeb,Long idCh);
+    public int CalculerPeriodeRes(Long idR);
 }

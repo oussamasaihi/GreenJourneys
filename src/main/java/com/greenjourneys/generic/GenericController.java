@@ -13,7 +13,7 @@ public class GenericController <T,ID> {
     public T add(@RequestBody T entity) {
         return genericService.add(entity);
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping()
     public T update(@RequestBody T entity) {
         return	genericService.update(entity);
@@ -23,12 +23,11 @@ public class GenericController <T,ID> {
     public T retrieveById(@PathVariable ID id ) {
         return	genericService.retrieveById(id);
     }
-
     @GetMapping()
     public List<T> retrieveAll() {
         return	genericService.retrieveAll();
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/{id}")
     public Boolean delete(@PathVariable ID id) {
         return	genericService.delete(id);

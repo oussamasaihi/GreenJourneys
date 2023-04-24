@@ -2,13 +2,12 @@ package com.greenjourneys.entities;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
-import java.util.logging.Level;
 
 @Entity
 @ToString
@@ -21,8 +20,11 @@ public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long idR;
+    LocalDate ReservationDate;
+    String Mobile;
     LocalDate dateDebut;
     LocalDate dateFin;
+    int TotalDays;
     long prixtotale;
     @ManyToMany
     List<Chambre> chambres;

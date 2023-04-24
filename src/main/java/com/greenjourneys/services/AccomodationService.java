@@ -1,9 +1,6 @@
 package com.greenjourneys.services;
 
-import com.greenjourneys.entities.Accomodation;
-import com.greenjourneys.entities.Chambre;
-import com.greenjourneys.entities.Reservation;
-import com.greenjourneys.entities.TypeAccomodation;
+import com.greenjourneys.entities.*;
 import com.greenjourneys.generic.IGenericServiceImp;
 import com.greenjourneys.repositories.IAccomodation;
 import com.greenjourneys.repositories.IChambre;
@@ -11,7 +8,9 @@ import com.greenjourneys.repositories.IReservation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.HashSet;
@@ -28,8 +27,7 @@ public class AccomodationService extends IGenericServiceImp<Accomodation,Long> i
     private ReservationService reservationService;
 
     @Override
-    public Boolean VerifierDispoChambre(Long IdAcc, Long IdCh, LocalDate DateDebRes,LocalDate DateFinRes) {
-        Accomodation accomodation = iAccomodation.findById(IdAcc).orElse(null);
+    public Boolean VerifierDispoChambre(Accomodation accomodation, Long IdCh, LocalDate DateDebRes,LocalDate DateFinRes) {
         Chambre chambre = iChambre.findById(IdCh).orElse(null);
         for (Reservation r : accomodation.getReservations()) {
             if (r.getChambres().contains(chambre)) {
@@ -53,40 +51,61 @@ public class AccomodationService extends IGenericServiceImp<Accomodation,Long> i
         Accomodation accomodation=iAccomodation.findById(IdAcc).orElse(null);
         Set<Chambre> ChambresVides = new HashSet<Chambre>();
         for (Chambre c : accomodation.getChambres()) {
-            if (VerifierDispoChambre(IdAcc, c.getIdCH(), DateDebRes,DateFinRes)) {
+            if (VerifierDispoChambre(accomodation, c.getIdCH(), DateDebRes,DateFinRes)) {
                 ChambresVides.add(c);
             }
         }
         return ChambresVides;
     }
-    @Override
-    public int capaciteChambres(Set<Chambre> chambres) {
-        int  capacite=0;
-        for(Chambre c:chambres){
-            capacite+=c.getCapacite();
-        }
-        return capacite;
-    }
 
     @Override
-    public Set<Accomodation> getAllDispoAcc(String ville,LocalDate DateDeb,LocalDate DateFin,int nbpersonnes,int nbChambres){
+    public Set<Accomodation> getAllDispoAcc(String ville,LocalDate DateDeb,LocalDate DateFin,List<TypeCh> t){
         Set<Accomodation> AccomodationsDispo=new HashSet<Accomodation>();
-        Set<Chambre> chambresvides;
         for(Accomodation a:retrieveAll()) {
             if (a.getVille().equals(ville)) {
-                chambresvides = getAllChambresVides(a.getIdAccomodation(),DateDeb,DateFin);
-                if ((chambresvides.size() >= nbChambres)&&(capaciteChambres(chambresvides)>=nbpersonnes))
+                if (verifierdiponibilitechambres(a,DateDeb,DateFin,t)!=null)
                     AccomodationsDispo.add(a);
             }
         }
         return AccomodationsDispo;
     }
     @Override
-    public Set<Accomodation> retrieveAccoByType(TypeAccomodation typeAcc,String ville,LocalDate DateDeb,LocalDate DateFin,int nbpersonnes,int nbChambres) {
-        return getAllDispoAcc(ville,DateDeb,DateFin,nbpersonnes,nbChambres)
+    public Set<Accomodation> retrieveAccoByType(TypeAccomodation typeAcc,String ville,LocalDate DateDeb,LocalDate DateFin,List<TypeCh> t) {
+        return getAllDispoAcc(ville,DateDeb,DateFin,t)
                 .stream()
                 .filter(a -> a.getTypeAcc().equals(typeAcc))
                 .collect(Collectors.toSet());
     }
 
+    @Override
+    public Set<Chambre> verifierdiponibilitechambres(Accomodation a, LocalDate DateDebRes, LocalDate DateFinRes, List<TypeCh> tychambres) {
+        Set<Chambre> chambresvides;
+        chambresvides=getAllChambresVides(a.getIdAccomodation(),DateDebRes,DateFinRes);
+        Set<Chambre> chambresAreserver=new HashSet<Chambre>();
+        int i=0;
+        Chambre found=null;
+        while(i<tychambres.size()){
+            for(Chambre c:chambresvides){
+                if(c.getTypech().equals(tychambres.get(i)))
+                    found=c;
+            }
+            if(found!=null){
+                i++;
+                chambresAreserver.add(found);
+                found=null;
+            }
+            else
+                break;
+        }
+        if(chambresAreserver.size()==tychambres.size())
+            return chambresAreserver;
+        return null;
     }
+
+    @Override
+    public Set<Chambre> getchambres(Long IdAcc ) {
+        Accomodation a=iAccomodation.findById(IdAcc).orElse(null);
+        return a.getChambres();
+    }
+
+}

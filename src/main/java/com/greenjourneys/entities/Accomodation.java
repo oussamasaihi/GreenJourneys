@@ -1,5 +1,6 @@
 package com.greenjourneys.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.Hibernate;
@@ -25,8 +26,10 @@ public class Accomodation implements Serializable {
     @Enumerated(EnumType.STRING)
     TypeAccomodation typeAcc ;
     int Stars ;
+    @JsonIgnore
     @OneToMany(mappedBy = "accommodation")
     Set<Chambre> chambres;
+    @JsonIgnore
     @OneToMany(mappedBy = "accommodation1")
     Set<Reservation> reservations;
 
