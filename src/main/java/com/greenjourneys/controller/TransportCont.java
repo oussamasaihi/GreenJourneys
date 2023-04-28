@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 public class TransportCont {
@@ -26,26 +27,42 @@ public class TransportCont {
         return transportService.retrieveById(id);
     }
 
-    @GetMapping(value = "/transport/gasConsumption/{id}")
+    @PostMapping(value = "/transport/gasConsumption")
     @ResponseBody
-    double gasConsumption(@PathVariable("id") Integer id) {
-        Transport transport = transportService.retrieveById(id);
+    List<Double> gasConsumption(@RequestBody List<Integer> listIds) {
 
-        switch (transport.getType_moyen()) {
-            case Train:
-                return transport.getDistance() / 0.006;
-            case Bus:
-                return transport.getDistance() / 0.4;
-            case Metro:
-                return 0.0;
-            case Avion:
-                return transport.getDistance() / 7.57082;
-            case Voiture:
-                return transport.getDistance() / 0.12;
-            default:
-                return 0.0;
-        }
+        List<Double> gasConsumptions = new ArrayList<>();
+
+        listIds.forEach(idTransport -> {
+            double gasConsu;
+            Transport transport = transportService.retrieveById(idTransport);
+            switch (transport.getType_moyen()) {
+                case Train:
+                    gasConsu = transport.getDistance() / 0.006;
+                    break;
+                case Bus:
+                    gasConsu = transport.getDistance() / 0.4;
+                    break;
+                case Metro:
+                    gasConsu = 0.0;
+                    break;
+                case Avion:
+                    gasConsu = transport.getDistance() / 7.57082;
+                    break;
+                case Voiture:
+                    gasConsu = transport.getDistance() / 0.12;
+                    break;
+                default:
+                    gasConsu = 0.0;
+                    break;
+            }
+            gasConsumptions.add(gasConsu);
+
+        });
+        return gasConsumptions;
     }
+
+
     @PostMapping(value = "/transport/add")
     @ResponseBody
     Transport add(@RequestBody Transport transport) {
