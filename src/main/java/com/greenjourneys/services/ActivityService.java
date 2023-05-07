@@ -1,12 +1,10 @@
 package com.greenjourneys.services;
 
 import com.greenjourneys.entities.Activity;
-import com.greenjourneys.entities.ActivityType;
 import com.greenjourneys.entities.Review;
 import com.greenjourneys.entities.User;
 import com.greenjourneys.generic.IGenericServiceImp;
 import com.greenjourneys.repositories.IActivity;
-import com.greenjourneys.repositories.IReview;
 import com.greenjourneys.repositories.IUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
