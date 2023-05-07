@@ -1,10 +1,8 @@
 package com.greenjourneys.services;
 
 import com.greenjourneys.entities.Activity;
-import com.greenjourneys.entities.ActivityType;
 import com.greenjourneys.entities.Review;
 import com.greenjourneys.entities.User;
-import com.greenjourneys.generic.IGenericService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
