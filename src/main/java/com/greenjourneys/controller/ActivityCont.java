@@ -7,7 +7,6 @@ import com.greenjourneys.entities.Review;
 import com.greenjourneys.entities.User;
 import com.greenjourneys.generic.GenericController;
 import com.greenjourneys.services.ActivityService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.data.domain.Page;
@@ -19,7 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping({"/Activities"})
 @CrossOrigin(origins = {"http://localhost:4200"})
-@Tag(name = "Activity", description = "Gestion des Activités")
 public class ActivityCont extends GenericController<Activity, Long> {
 
     private final ActivityService activityService;

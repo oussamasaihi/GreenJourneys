@@ -2,12 +2,6 @@ package com.greenjourneys.controller;
 
 import com.greenjourneys.entities.Reclamation;
 import com.greenjourneys.services.ReclamationService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,20 +12,13 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("Reclamation")
 @CrossOrigin(origins = {"*"})
-@Tag(name = "Reclamation", description = "Gestion des reclamations")
 public class ReclamationCont {
 
 
     private final ReclamationService reclamationService;
     /****************************ajout mta3 reclamation wa7da ***********************/
 
-    @Operation(summary = "Add Reclamation", description = "Ajouter une nouvelle reclamation ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "add successfully",content = {
-                    @Content(mediaType = "application/json",schema = @Schema(implementation = Reclamation.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",content = @Content),
-            @ApiResponse(responseCode = "404", description = "Add failed",content = @Content)
-    })
+
     @PostMapping("addRec")
     public Reclamation addReclamation(@RequestBody Reclamation reclamation){
         return reclamationService.saveReclamation(reclamation);
@@ -39,13 +26,7 @@ public class ReclamationCont {
 
     /********************************Update Reclamation************************************/
 
-    @Operation(summary = "Update Reclamation", description = "Mettre à jour une reclamation ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Updated successfully",content = {
-                    @Content(mediaType = "application/json",schema = @Schema(implementation = Reclamation.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",content = @Content),
-            @ApiResponse(responseCode = "404", description = "Update failed",content = @Content)
-    })
+
     @PutMapping("updateRec/{id}")
     public Reclamation updateReclamation(@RequestBody Reclamation reclamation, @PathVariable("id") Long id){
         return reclamationService.updateReclamation(reclamation,id);
@@ -53,13 +34,7 @@ public class ReclamationCont {
 
     /********************************Delete Reclamation By Id************************************/
 
-    @Operation(summary = "Delete Reclamation", description = "Supprimer une reclamation ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Deleted successfully",content = {
-                    @Content(mediaType = "application/json",schema = @Schema(implementation = Reclamation.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",content = @Content),
-            @ApiResponse(responseCode = "404", description = "Delete failed",content = @Content)
-    })
+
 
 
     @DeleteMapping("deleteByIdRec/{id}")
@@ -70,13 +45,7 @@ public class ReclamationCont {
 
     /********************************Get Reclamations************************************/
 
-    @Operation(summary = "Get All Reclamations", description = "Retourne la liste des Reclamations ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Found the Universite",content = {
-                    @Content(mediaType = "application/json",schema = @Schema(implementation = Reclamation.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",content = @Content),
-            @ApiResponse(responseCode = "404", description = "Empty List ",content = @Content)
-    })
+
 
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -88,13 +57,7 @@ public class ReclamationCont {
     /********************************Get Reclamations Non Traitees************************************/
 
 
-    @Operation(summary = "Get All Reclamations Non Traitees", description = "Retourne la liste des Reclamations Non Traitees")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Found the Reclamation",content = {
-                    @Content(mediaType = "application/json",schema = @Schema(implementation = Reclamation.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",content = @Content),
-            @ApiResponse(responseCode = "404", description = "Empty List ",content = @Content)
-    })
+
 
     @GetMapping("listeReclamationsNonTraitees")
     public List<Reclamation> listeReclamationsNonTraitees(){
@@ -103,13 +66,6 @@ public class ReclamationCont {
     }
     /********************************Get Reclamations Traitees************************************/
 
-    @Operation(summary = "Get All Reclamations Traitees", description = "Retourne la liste des Reclamations Traitees")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Found the Reclamation",content = {
-                    @Content(mediaType = "application/json",schema = @Schema(implementation = Reclamation.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",content = @Content),
-            @ApiResponse(responseCode = "404", description = "Empty List ",content = @Content)
-    })
     @GetMapping("listeReclamationsTraitees")
     public List<Reclamation> listeReclamationsTraitees(){
         List<Reclamation> liste =reclamationService.listeReclamationsTratitees();
@@ -119,13 +75,7 @@ public class ReclamationCont {
     /********************************Traiter Reclamation************************************/
 
 
-    @Operation(summary = "Set Etat True", description = "Traite une reclamation")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Found the Reclamation",content = {
-                    @Content(mediaType = "application/json",schema = @Schema(implementation = Reclamation.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",content = @Content),
-            @ApiResponse(responseCode = "404", description = "Empty List ",content = @Content)
-    })
+
 
 
 
