@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IChambreService extends IGenericService<Chambre,Long> {
     public Long CalculPrixTotal(Long AncienPrix,Long IdCh,String Option,int nbEnfants);
-    public Long PrixChambresTotale(HashMap<Chambre,Integer> m, String Option);
+    public Long PrixChambresTotale(List<Chambre> chs,List<Integer> nbchilds, String Option);
     public Chambre AssignChambreToAcco(Long IdCh, Long IdAcc);
 
 }

@@ -1,14 +1,14 @@
 package com.greenjourneys.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @ToString
@@ -22,16 +22,19 @@ public class Accomodation implements Serializable {
     long idAccomodation;
     String name ;
     String ville;
-    String Addresse ;
+    String addresse ;
+    String email;
+    String amenities;
     @Enumerated(EnumType.STRING)
     TypeAccomodation typeAcc ;
-    int Stars ;
+    int stars ;
+    String description;
     @JsonIgnore
     @OneToMany(mappedBy = "accommodation")
     Set<Chambre> chambres;
     @JsonIgnore
     @OneToMany(mappedBy = "accommodation1")
     Set<Reservation> reservations;
-
+    Long Fileid;
 
 }

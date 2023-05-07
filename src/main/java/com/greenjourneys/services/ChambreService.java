@@ -34,13 +34,13 @@ public class ChambreService extends IGenericServiceImp<Chambre,Long> implements 
     }
 
     @Override
-    public Long PrixChambresTotale(HashMap<Chambre, Integer> m, String Option) {
+    public Long PrixChambresTotale(List<Chambre> chs,List<Integer> nbchilds, String Option) {
         long PrixTotal = 0;
-        for (Chambre c : m.keySet()) {
+        for (Chambre c : chs) {
             if (Option.equals("Complet")) {
-                PrixTotal = PrixTotal + c.getPrixComplet() - (c.getReductionEnfant() * m.get(c));
+                PrixTotal = PrixTotal + c.getPrixComplet() - (c.getReductionEnfant() * nbchilds.get(chs.indexOf(c)));
             } else {
-                PrixTotal = PrixTotal + c.getPrixDemiPortion() - (c.getReductionEnfant() * m.get(c));
+                PrixTotal = PrixTotal + c.getPrixDemiPortion() - (c.getReductionEnfant() * nbchilds.get(chs.indexOf(c)));
             }
         }
         return PrixTotal;

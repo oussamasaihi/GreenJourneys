@@ -4,6 +4,7 @@ import com.greenjourneys.entities.*;
 import com.greenjourneys.generic.IGenericServiceImp;
 import com.greenjourneys.repositories.IAccomodation;
 import com.greenjourneys.repositories.IChambre;
+import com.greenjourneys.repositories.IFile;
 import com.greenjourneys.repositories.IReservation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AccomodationService extends IGenericServiceImp<Accomodation,Long> implements IAccomodationService {
     private final IAccomodation iAccomodation;
+    private final IFile iFile;
     private final IChambre iChambre;
+
     @Autowired
     private ReservationService reservationService;
 
@@ -63,7 +66,7 @@ public class AccomodationService extends IGenericServiceImp<Accomodation,Long> i
         Set<Accomodation> AccomodationsDispo=new HashSet<Accomodation>();
         for(Accomodation a:retrieveAll()) {
             if (a.getVille().equals(ville)) {
-                if (verifierdiponibilitechambres(a,DateDeb,DateFin,t)!=null)
+                if (verifierdiponibilitechambres(a.getIdAccomodation(),DateDeb,DateFin,t)!=null)
                     AccomodationsDispo.add(a);
             }
         }
@@ -78,7 +81,8 @@ public class AccomodationService extends IGenericServiceImp<Accomodation,Long> i
     }
 
     @Override
-    public Set<Chambre> verifierdiponibilitechambres(Accomodation a, LocalDate DateDebRes, LocalDate DateFinRes, List<TypeCh> tychambres) {
+    public Set<Chambre> verifierdiponibilitechambres(Long ida, LocalDate DateDebRes, LocalDate DateFinRes, List<TypeCh> tychambres) {
+        Accomodation a=iAccomodation.findById(ida).orElse(null);
         Set<Chambre> chambresvides;
         chambresvides=getAllChambresVides(a.getIdAccomodation(),DateDebRes,DateFinRes);
         Set<Chambre> chambresAreserver=new HashSet<Chambre>();

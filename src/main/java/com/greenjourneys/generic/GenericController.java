@@ -9,6 +9,7 @@ public class GenericController <T,ID> {
     @Autowired
     IGenericService<T,ID> genericService;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping()
     public T add(@RequestBody T entity) {
         return genericService.add(entity);
@@ -18,7 +19,7 @@ public class GenericController <T,ID> {
     public T update(@RequestBody T entity) {
         return	genericService.update(entity);
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
     public T retrieveById(@PathVariable ID id ) {
         return	genericService.retrieveById(id);
