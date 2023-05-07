@@ -30,7 +30,7 @@ public class EventService implements IEventService {
 
     @Override
     public Event retrieveById(Long id) {
-//        return eventRepository.findById(id).get();
+//      return eventRepository.findById(id).get();
         return eventRepository.findById(id).orElse(null);
     }
 

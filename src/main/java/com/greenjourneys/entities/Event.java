@@ -24,5 +24,4 @@ public class Event {
 
     @ManyToOne
     private User user;
-
 }

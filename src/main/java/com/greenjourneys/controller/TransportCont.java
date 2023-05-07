@@ -27,15 +27,15 @@ public class TransportCont {
         return transportService.retrieveById(id);
     }
 
-    @PostMapping(value = "/transport/gasConsumption")
+    @PostMapping(value = "/transport/gasConsumption/{id}")
     @ResponseBody
-    List<Double> gasConsumption(@RequestBody List<Integer> listIds) {
+    List<Double> gasConsumption(@PathVariable Long id) {
 
         List<Double> gasConsumptions = new ArrayList<>();
+        List<Transport> list = transportService.getTransportsByIdUser(id);
 
-        listIds.forEach(idTransport -> {
+        list.forEach(transport -> {
             double gasConsu;
-            Transport transport = transportService.retrieveById(idTransport);
             switch (transport.getType_moyen()) {
                 case Train:
                     gasConsu = transport.getDistance() / 0.006;

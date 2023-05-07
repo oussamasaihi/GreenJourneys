@@ -42,4 +42,9 @@ public class TransportService implements ITransportService{
         }
         return false;
     }
+
+    @Override
+    public List<Transport> getTransportsByIdUser(Long idUser) {
+        return transportRepository.getTransportsByIdUser(idUser);
+    }
 }
