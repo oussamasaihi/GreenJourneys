@@ -49,12 +49,6 @@ public class AccomodationCont extends GenericController<Accomodation,Long> {
     public Set<Accomodation> retrieveAccoByType(@PathVariable TypeAccomodation typeAcc, @PathVariable String ville, @DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable LocalDate DateDeb, @DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable LocalDate DateFin, @RequestBody List<TypeCh> typesChambres) {
         return iAccomodationService.retrieveAccoByType(typeAcc, ville, DateDeb, DateFin, typesChambres);
     }
-
-    @GetMapping("/aaa/{IdAcc}")
-    public Set<Chambre> getchambres(@PathVariable Long IdAcc) {
-        return iAccomodationService.getchambres(IdAcc);
-    }
-
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/add")
     public Accomodation add(@RequestParam MultipartFile file,Accomodation accomodation) {

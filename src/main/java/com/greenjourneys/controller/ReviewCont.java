@@ -2,12 +2,7 @@ package com.greenjourneys.controller;
 import com.greenjourneys.entities.Review;
 import com.greenjourneys.generic.GenericController;
 import com.greenjourneys.services.ReviewService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
+
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +13,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping({"/Reviews"})
 @CrossOrigin( origins = {"http://localhost:4200"} )
-@Tag(
-        name = "Reviews",
-        description = "Reviews of Activities , Accomodations and Events "
-)
-public class ReviewCont extends GenericController<Review, Long> {
+
+public class ReviewCont  {
 
     private final ReviewService reviewService;
 
@@ -32,13 +24,6 @@ public class ReviewCont extends GenericController<Review, Long> {
     }
     /****************************ajout mta3 review ***********************/
 
-    @Operation(summary = "Add Review", description = "Ajouter un review ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "add successfully",content = {
-                    @Content(mediaType = "application/json",schema = @Schema(implementation = Review.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",content = @Content),
-            @ApiResponse(responseCode = "404", description = "Add failed",content = @Content)
-    })
 
 
     @PostMapping("/addReview")
@@ -48,13 +33,6 @@ public class ReviewCont extends GenericController<Review, Long> {
 
     /********************************Update Review************************************/
 
-    @Operation(summary = "Update Review", description = "Mettre à jour un Review ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Updated successfully",content = {
-                    @Content(mediaType = "application/json",schema = @Schema(implementation = Review.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",content = @Content),
-            @ApiResponse(responseCode = "404", description = "Update failed",content = @Content)
-    })
 
 
     @PutMapping("updateRev/{id}")
@@ -66,13 +44,6 @@ public class ReviewCont extends GenericController<Review, Long> {
 
     /********************************Delete Review By Id************************************/
 
-    @Operation(summary = "Delete Review by Id", description = "Supprimer un Review ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Deleted successfully",content = {
-                    @Content(mediaType = "application/json",schema = @Schema(implementation = Review.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",content = @Content),
-            @ApiResponse(responseCode = "404", description = "Delete failed",content = @Content)
-    })
 
 
 
@@ -85,14 +56,6 @@ public class ReviewCont extends GenericController<Review, Long> {
 
     /********************************Assign review to Activity************************************/
 
-    @Operation(summary = "Make an activity Review", description = "gets All activity reviews ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Activity Reviewed",content = {
-                    @Content(mediaType = "application/json",schema = @Schema(implementation = Review.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",content = @Content),
-            @ApiResponse(responseCode = "404", description = "Empty List ",content = @Content)
-    })
-
 
     @PostMapping("/Activities/addReviews")
     public void assignReviewToActivity(Long idActivity, Long id){
@@ -100,29 +63,16 @@ public class ReviewCont extends GenericController<Review, Long> {
     }
     /********************************Assign review to Event************************************/
 
-    @Operation(summary = "Make an Event Review", description = "gets All Events and make review ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Event Reviewd",content = {
-                    @Content(mediaType = "application/json",schema = @Schema(implementation = Review.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",content = @Content),
-            @ApiResponse(responseCode = "404", description = "Empty List ",content = @Content)
-    })
+
 
 
 
     @PostMapping("/Events/addReviews")
     public void assignReviewToEvent(Long idEvent, Long id) {
-        reviewService.assignReviewToEvent(idEvent,id);
+       // reviewService.assignReviewToEvent(idEvent,id);
+
     }
     /********************************Assign review to Accomodation************************************/
-
-    @Operation(summary = "Make an Accomodation Review", description = "gets All Accomodations and make review ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Accomodation Reviewd",content = {
-                    @Content(mediaType = "application/json",schema = @Schema(implementation = Review.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",content = @Content),
-            @ApiResponse(responseCode = "404", description = "Empty List ",content = @Content)
-    })
 
 
     @PostMapping("/Accomodations/addReviews")
@@ -131,13 +81,7 @@ public class ReviewCont extends GenericController<Review, Long> {
     }
     /********************************Get Reviews by Type************************************/
 
-    @Operation(summary = "get all reviews of a Type", description = "gets All Reviews to a type ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Reviews Found",content = {
-                    @Content(mediaType = "application/json",schema = @Schema(implementation = Review.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",content = @Content),
-            @ApiResponse(responseCode = "404", description = "Empty List ",content = @Content)
-    })
+
     @GetMapping("/{Type}/getReviews")
     public List<Review> getReviewsByType(String Type) {
         return reviewService.getReviewsByType(Type);

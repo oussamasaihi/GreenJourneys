@@ -18,7 +18,7 @@ public interface IReviewService {
     List<Review> getallReviews();
     public void assignReviewToActivity(Long idActivity, Long id) ;
     public void assignReviewToAccomodation(Long idAccomodation, Long id) ;
-    public void assignReviewToEvent(Long idEvent, Long id) ;
+    //public void assignReviewToEvent(Long idEvent, Long id) ;
 
     public List<Review> getReviewsByType (String entity) ;
 }

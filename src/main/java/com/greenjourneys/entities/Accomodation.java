@@ -18,7 +18,6 @@ import java.util.*;
 public class Accomodation implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Setter(AccessLevel.NONE)
     long idAccomodation;
     String name ;
     String ville;
@@ -30,10 +29,10 @@ public class Accomodation implements Serializable {
     int stars ;
     String description;
     @JsonIgnore
-    @OneToMany(mappedBy = "accommodation")
+    @OneToMany(mappedBy = "accommodation",cascade = CascadeType.REMOVE)
     Set<Chambre> chambres;
     @JsonIgnore
-    @OneToMany(mappedBy = "accommodation1")
+    @OneToMany(mappedBy = "accommodation1",cascade = CascadeType.REMOVE)
     Set<Reservation> reservations;
     Long Fileid;
 

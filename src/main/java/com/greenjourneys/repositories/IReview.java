@@ -16,9 +16,9 @@ public interface IReview extends JpaRepository<Review,Long> {
     @Modifying
     @Query("UPDATE Activity a SET a.reviewsActivity = :review WHERE a.idActivity = :idActivity")
     void assignReviewToActivity(@Param("idActivity") Long idActivity, @Param("review") Long review);
-    @Modifying
-    @Query("UPDATE Event e SET e.reviewsEvent = :review WHERE e.IdEvent = :idEvent")
-    void assignReviewToEvent(@Param("idEvent") Long idEvent, @Param("review") Long review);
+   // @Modifying
+//    @Query("UPDATE Event e SET e.reviewsEvent = :review WHERE e.IdEvent = :idEvent")
+//    void assignReviewToEvent(@Param("idEvent") Long idEvent, @Param("review") Long review);
     @Query("SELECT r FROM Review r WHERE r.accomodation IS NOT NULL")
     List<Review> findAllByAccommodationIsNotNull();
 

@@ -62,10 +62,10 @@ public class ReviewService implements IReviewService {
         iReview.assignReviewToAccomodation(idAccomodation,id);
     }
 
-    @Override
-    public void assignReviewToEvent(Long idEvent, Long id) {
-        iReview.assignReviewToEvent(idEvent,id);
-    }
+//    @Override
+//    public void assignReviewToEvent(Long idEvent, Long id) {
+//        iReview.assignReviewToEvent(idEvent,id);
+//    }
 
 
     public List<Review> getReviewsByType(String entity) {

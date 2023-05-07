@@ -13,5 +13,4 @@ public interface IAccomodationService extends IGenericService<Accomodation,Long>
     public Set<Accomodation> getAllDispoAcc(String ville,LocalDate DateDeb,LocalDate DateFin,List<TypeCh> t);
     public Set<Accomodation> retrieveAccoByType(TypeAccomodation typeAcc,String ville,LocalDate DateDeb,LocalDate DateFin,List<TypeCh> t);
     public Set<Chambre> verifierdiponibilitechambres(Long ida,LocalDate DateDebRes,LocalDate DateFinRes,List<TypeCh> tychambres);
-    public Set<Chambre> getchambres(Long IdAcc);
 }

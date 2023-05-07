@@ -106,10 +106,4 @@ public class AccomodationService extends IGenericServiceImp<Accomodation,Long> i
         return null;
     }
 
-    @Override
-    public Set<Chambre> getchambres(Long IdAcc ) {
-        Accomodation a=iAccomodation.findById(IdAcc).orElse(null);
-        return a.getChambres();
-    }
-
 }
