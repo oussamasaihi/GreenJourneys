@@ -1,18 +1,16 @@
 package com.greenjourneys.services;
 
 import com.greenjourneys.entities.Activity;
-import com.greenjourneys.entities.Reclamation;
 import com.greenjourneys.entities.Review;
-import com.greenjourneys.generic.IGenericService;
+import com.greenjourneys.entities.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface IActivityService extends IGenericService<Activity,Long> {
+public interface IActivityService  {
     Activity add(Activity entity);
 
-    List<Activity> updateActivities(List<Activity> listActivities);
     public Page<Activity> listeActivities(Pageable pageable) ;
 
     Activity update(Activity entity);
@@ -25,5 +23,7 @@ public interface IActivityService extends IGenericService<Activity,Long> {
 
     Activity getActivityByReview(Activity act, Review Rev);
     public List<Activity> getActivitiesWithBestReviewsByRate(int limit) ;
+    public List<Activity> getActivitiesByType(String activtyType);
+    public void AssignUserToActivity (User user , long activityId);
 
 }

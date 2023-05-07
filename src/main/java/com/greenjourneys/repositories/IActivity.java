@@ -13,6 +13,13 @@ public interface IActivity extends JpaRepository<Activity,Long> {
     List<Activity> getActivityByNameAndRegion(String name, String region);
     @Query("SELECT a FROM Activity a JOIN a.reviewsActivity r WHERE r = :review")
     Activity getActivityByReview(@Param("review") Review review);
+    @Query(value = "SELECT ac FROM Activity ac WHERE ac.activityType = ?1 ORDER BY CURRENT_DATE")
+    List<Activity> getActivityByType(String activityType);
+
+//    @Modifying
+//    @Query (value = "UPDATE Activity a SET a.user = :user WHERE a.idActivity = :activityId\n")
+//    void AsssignUserToActivity(User user , long idActivity);
+
 
 
 

@@ -2,14 +2,13 @@ package com.greenjourneys.services;
 
 import com.greenjourneys.entities.Activity;
 import com.greenjourneys.entities.Review;
+import com.greenjourneys.entities.User;
 import com.greenjourneys.generic.IGenericServiceImp;
 import com.greenjourneys.repositories.IActivity;
 import com.greenjourneys.repositories.IReview;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -17,19 +16,17 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
-
+@RequiredArgsConstructor
 public class ActivityService extends IGenericServiceImp<Activity,Long> implements IActivityService  {
-    @Autowired
-    IActivity a;
-    IReview rev;
+
+    private final IActivity a;
+    private final IReview rev;
+    IUserService iUser ;
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -45,11 +42,11 @@ public class ActivityService extends IGenericServiceImp<Activity,Long> implement
     }
 
     public List<Activity> retrieveAllActivities() {
-        return this.a.findAll();
+        return a.findAll();
     }
 
     public void removeActivity(long Id) {
-        this.a.deleteAllById(Collections.singleton(Id));
+        a.deleteById(Id);
     }
 
     public Activity getActivityByReview(Activity act, Review Rev) {
@@ -69,10 +66,6 @@ public class ActivityService extends IGenericServiceImp<Activity,Long> implement
         return a.save(activity);
     }
 
-    @Override
-    public List<Activity> updateActivities(List<Activity> listActivities) {
-        return a.saveAll(listActivities);
-    }
 
     @Override
     public Page<Activity> listeActivities(Pageable pageable) {
@@ -102,6 +95,23 @@ public class ActivityService extends IGenericServiceImp<Activity,Long> implement
         return activitiesWithBestReviews.stream()
                 .limit(limit)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Activity> getActivitiesByType(String activtyType) {
+        return a.getActivityByType(activtyType);
+    }
+
+    @Override
+    public void AssignUserToActivity(User user, long activityId) {
+        Optional<Activity> activityOptional = a.findById(activityId);
+        if (activityOptional.isPresent()) {
+            Activity activity = activityOptional.get();
+            user.setActivity(activity);
+            iUser.addUser(user);
+        } else {
+            // handle the case when activity with the given ID is not found
+        }
     }
 
 
