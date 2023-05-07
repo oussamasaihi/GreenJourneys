@@ -8,34 +8,38 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(
+        name = "groupe"
+)
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class Interest {
+@NoArgsConstructor
+public class Group {
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
     )
-    private long idInterest;
-    private String place;
-    private Date date;
-    private String activityName;
-    private int age;
+    private Long id;
+    private String name;
     @JsonIgnore
     @ManyToMany
     @JoinTable(
-            name = "interest_user",
+            name = "group_user",
             joinColumns = {@JoinColumn(
-                    name = "interest_id"
+                    name = "group_id"
             )},
             inverseJoinColumns = {@JoinColumn(
                     name = "user_id"
             )}
     )
     private List<User> users = new ArrayList();
+    @JsonIgnore
+    @OneToMany(
+            mappedBy = "group"
+    )
+    private List<Chat> chats = new ArrayList();
 }

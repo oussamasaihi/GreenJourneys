@@ -1,11 +1,13 @@
 package com.greenjourneys.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -24,16 +26,16 @@ public class User {
     long numtel ;
     Role role ;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        User user = (User) o;
-        return  Objects.equals(getId_user(), user.getId_user());
-    }
 
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
+
+    @ManyToMany(
+            mappedBy = "users"
+    )
+    private List<Interest> interest;
+    @JsonIgnore
+    @ManyToMany(
+            mappedBy = "users"
+    )
+    private List<Group> groups = new ArrayList();
+
 }
