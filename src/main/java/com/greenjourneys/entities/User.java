@@ -6,6 +6,7 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,5 +41,14 @@ public class User {
     @OneToMany
     private List<Reclamation> reclamations;
 
+    @ManyToMany(
+            mappedBy = "users"
+    )
+    private List<Interest> interest;
+    @JsonIgnore
+    @ManyToMany(
+            mappedBy = "users"
+    )
+    private List<Group> groups = new ArrayList();
 
 }
