@@ -29,6 +29,7 @@ public class Chambre implements Serializable {
     TypeCh typech;
     @ManyToOne
     Accomodation accommodation;
+    Long Fileid;
 
     @Override
     public boolean equals(Object o) {
