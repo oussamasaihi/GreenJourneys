@@ -12,14 +12,10 @@ import java.util.Optional;
 
 public interface IReviewService {
 
-    Optional<Review> getReviewbyId(Long id);
     Review saveReview(Review review);
-    List<Review> saveReviews(List<Review> listReviews);
     Review updateReview(Review review, Long id);
-    List<Review> updateReviews(List<Review> listReviews);
     void deleteReviewById(Long id);
-    void deleteReview(Review review);
-    Page<Review> listeRewiews(Pageable pageable);
+    List<Review> getallReviews();
     public void assignReviewToActivity(Long idActivity, Long id) ;
     public void assignReviewToAccomodation(Long idAccomodation, Long id) ;
     public void assignReviewToEvent(Long idEvent, Long id) ;

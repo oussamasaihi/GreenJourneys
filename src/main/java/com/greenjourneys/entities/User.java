@@ -30,9 +30,6 @@ public class User {
     private Role role ;
     @JsonIgnore
     @OneToOne
-    private Accomodation accomodation ;
-    @JsonIgnore
-    @OneToOne
     private Activity activity ;
     @JsonIgnore
     @OneToOne
