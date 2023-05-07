@@ -20,25 +20,21 @@ public class ReclamationService implements IReclamationService{
     private final IReclamation iReclamation ;
 
     @Override
-    public Reclamation saveReclamation(Reclamation reclamation) {return iReclamation.save(reclamation);}
+    public List<Reclamation> getReclamations() {
+        return iReclamation.findAll();
+    }
 
     @Override
-    public List<Reclamation> saveReclamations(List<Reclamation> listReclamations) {return iReclamation.saveAll(listReclamations);}
+    public Reclamation saveReclamation(Reclamation reclamation) {return iReclamation.save(reclamation);}
+
 
     @Override
     public Reclamation updateReclamation(Reclamation reclamation, Long id) {return iReclamation.save(reclamation);}
 
-    @Override
-    public List<Reclamation> updateReclamations(List<Reclamation> listReclamations) {return iReclamation.saveAll(listReclamations);}
 
     @Override
     public void deleteReclamationById(Long id) {iReclamation.deleteById(id);}
 
-    @Override
-    public void deleteReclamation(Reclamation reclamation) {iReclamation.delete(reclamation);}
-
-    @Override
-    public Page<Reclamation> listeReclamations(Pageable pageable) {return iReclamation.findAll(pageable);}
 
     @Override
     public List<Reclamation> listeReclamationsNonTratitees() {return iReclamation.reclamationsNonTratitees();}
