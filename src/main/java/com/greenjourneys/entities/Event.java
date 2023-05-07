@@ -1,45 +1,27 @@
 package com.greenjourneys.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
-public class Event implements Serializable{
+@ToString
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
+public class Event {
+
     @Id
-    private long IdEvent;
-    @Temporal(TemporalType.DATE)
-    @Column(
-            name = "dateDebut"
-    )
-    private Date dateDebut;
-    @Temporal(TemporalType.DATE)
-    @Column(
-            name = "dateFin"
-    )
-    private Date dateFin;
-    @Column(
-            name = "archive",
-            columnDefinition = "boolean default false"
-    )
-    private Boolean archive = false;
-    private String region;
-    private String nom;
-    private String description;
-    @JsonIgnore
-    @OneToMany
-    List<Review> reviewsEvent ;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
+    private Long idEvent;
+    private LocalDate dateDebutEvent;
+    private LocalDate dateFinEvent;
+    private String regionEvent;
+    private String nomEvent;
+    private String descriptionEvent;
 
-
-
-
+    @ManyToOne
+    private User user;
 }
