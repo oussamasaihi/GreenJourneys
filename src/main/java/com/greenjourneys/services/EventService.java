@@ -59,8 +59,8 @@ public class EventService implements IEventService {
 
     }
 
-   // @Override
-    //public List<Event> getNewEventFor(Integer idUser) {
-        //return eventRepository.getNewEventFor(idUser);
-    //}
+    @Override
+    public List<Event> getNewEventFor(Integer idUser) {
+        return eventRepository.getNewEventFor(idUser);
+    }
 }

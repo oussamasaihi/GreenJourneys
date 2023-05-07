@@ -11,5 +11,5 @@ public interface IEventService extends IGenericService<Event, Long> {
 
     void sendMail(String to, String subject, String text);
 
-   // List<Event> getNewEventFor(Integer idUser);
+    List<Event> getNewEventFor(Integer idUser);
 }
