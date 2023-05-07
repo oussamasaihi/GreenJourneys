@@ -25,6 +25,12 @@ public class EventCont {
         return eventService.retrieveAll();
     }
 
+    @GetMapping(value = "/event/getNewEvent/{id_user}")
+    @ResponseBody
+    List<Event> getNewEvent(@PathVariable("id_user") Integer idUser) {
+        return eventService.getNewEventFor(idUser);
+    }
+
     @GetMapping(value = "/event/getById/{id}")
     @ResponseBody
     Event getById(@PathVariable("id") Long id) {

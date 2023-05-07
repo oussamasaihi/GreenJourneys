@@ -58,4 +58,9 @@ public class EventService implements IEventService {
         mailSender.send(message);
 
     }
+
+    @Override
+    public List<Event> getNewEventFor(Integer idUser) {
+        return eventRepository.getNewEventFor(idUser);
+    }
 }
