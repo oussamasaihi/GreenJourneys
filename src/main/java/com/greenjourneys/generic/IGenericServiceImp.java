@@ -1,41 +1,46 @@
 package com.greenjourneys.generic;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 public class IGenericServiceImp<T,ID> implements IGenericService<T,ID> {
 
+    @Autowired
+    JpaRepository<T,ID> baseRepository;
 
-    JpaRepository<T, ID> baseRepository;
+    // @Autowired
+    //private  BaseRepository<T, ID> baseRepository;
 
-    public IGenericServiceImp() {
-    }
-
+    @Override
     public T add(T entity) {
-        return this.baseRepository.save(entity);
+        return baseRepository.save(entity);
     }
 
+    @Override
     public T update(T entity) {
-        return this.baseRepository.save(entity);
+        return baseRepository.save(entity);
     }
 
+    @Override
     public T retrieveById(ID id) {
-        return this.baseRepository.findById(id).orElse((T) null);
+        return baseRepository.findById(id).orElse(null);
     }
 
+    @Override
     public List<T> retrieveAll() {
-        return this.baseRepository.findAll();
+        return baseRepository.findAll();
     }
 
+    @Override
     public Boolean delete(ID id) {
-        if (this.baseRepository.existsById(id)) {
-            this.baseRepository.deleteById(id);
+        if (baseRepository.existsById(id)) {
+            baseRepository.deleteById(id);
             return true;
-        } else {
-            return false;
         }
+        else {return false;}
     }
+
 }
