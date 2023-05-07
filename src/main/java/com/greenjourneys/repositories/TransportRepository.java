@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface TransportRepository extends JpaRepository<Transport, Integer> {
-    @Query("select t from Transport t where t.user.id_user = :id_user")
+    @Query("select t from Transport t where t.user.id = :id_user")
     public List<Transport> getTransportsByIdUser(@Param("id_user") Long idUser);
 
 }

@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 @Entity
+@Getter
+@Setter
 public class User {
     public void setActivity(Activity activity) {
         this.activity = activity;

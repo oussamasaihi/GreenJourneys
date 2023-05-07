@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
-    @Query("select e from Event e where e.")
-    List<Event> getNewEventFor(Integer idUser);
+   // @Query("select e from Event e where e.")
+    //List<Event> getNewEventFor(Integer idUser);
 }
