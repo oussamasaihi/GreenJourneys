@@ -48,9 +48,7 @@ public class ReviewService implements IReviewService {
         return iReview.findAll();
     }
 
-    /*review Eevent
-    /review accomodation
-    /review Activity*/
+
     @Override
     public void assignReviewToActivity(Long idActivity, Long id) {
 
