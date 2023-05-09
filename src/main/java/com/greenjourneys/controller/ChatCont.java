@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/chat")
+@CrossOrigin(origins = "*")
 public class ChatCont {
     public final ChatService chatService;
 

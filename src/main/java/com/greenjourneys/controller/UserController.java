@@ -21,7 +21,8 @@ import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.List;
 @RestController
-@RequestMapping("/UserController")
+@RequestMapping("/user")
+@CrossOrigin(origins = "*")
 public class UserController {
     @Autowired
     IUserService us;

@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Comment")
+@RequestMapping("/api/Comment")
+@CrossOrigin(origins = "*")
 public class CommentCont {
     @Autowired
     private final IComment iComment;

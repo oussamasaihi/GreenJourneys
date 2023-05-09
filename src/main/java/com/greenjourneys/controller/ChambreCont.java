@@ -18,9 +18,9 @@ import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/Chambre")
+@RequestMapping("/api/Chambre")
 @RequiredArgsConstructor
 public class ChambreCont extends GenericController<Chambre,Long> {
 
@@ -29,7 +29,7 @@ public class ChambreCont extends GenericController<Chambre,Long> {
     @Autowired
     IFile iFile;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("{AncienPrix}/{IdCh}/{Option}/{nbEnfants}")
     public Long CalculPrixTotal(@PathVariable Long AncienPrix,@PathVariable Long IdCh,@PathVariable String Option,@PathVariable int nbEnfants) {
         return iChambreService.CalculPrixTotal(AncienPrix,IdCh,Option,nbEnfants);
@@ -38,12 +38,12 @@ public class ChambreCont extends GenericController<Chambre,Long> {
     public Chambre AssignChambreToAcco(@PathVariable Long IdCh, @PathVariable Long IdAcc) {
         return iChambreService.AssignChambreToAcco(IdCh, IdAcc);
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/prix/{nbchilds}/{Option}")
     public Long PrixChambresTotale(@RequestBody List<Chambre> chs,@PathVariable List<Integer> nbchilds,@PathVariable String Option) {
         return iChambreService.PrixChambresTotale(chs,nbchilds,Option);
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/add")
     public Chambre add(@RequestParam MultipartFile file, Chambre chambre) {
         String message = "";

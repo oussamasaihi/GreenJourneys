@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Reservation")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/api/Reservation")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class ReservationCont extends GenericController<Reservation,Long> {
     private final IReservationService iReservationService;

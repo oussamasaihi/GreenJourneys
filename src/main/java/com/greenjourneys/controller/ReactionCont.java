@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reactionCont")
+@RequestMapping("/api/reactionCont")
+@CrossOrigin(origins = "*")
 public class ReactionCont {
     @Autowired
     public IReactionService iReactionService;

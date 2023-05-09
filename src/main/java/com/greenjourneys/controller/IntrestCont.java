@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
+@RequestMapping("/api")
+
 public class IntrestCont {
     public final InterestService interestService ;
     @GetMapping({"/interests"})

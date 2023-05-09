@@ -12,6 +12,8 @@ import java.util.Iterator;
 import java.util.List;
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class GroupCont {
     private final GroupService groupService;
     private final IInterestService interestService ;
