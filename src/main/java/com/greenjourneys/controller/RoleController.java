@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @Controller
+@CrossOrigin(origins = "*")
 public class RoleController {
     @Autowired
     IRoleService rs;

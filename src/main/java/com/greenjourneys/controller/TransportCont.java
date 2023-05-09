@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 @RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class TransportCont {
 
     @Autowired

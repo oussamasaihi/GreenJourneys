@@ -11,8 +11,8 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("Reclamation")
-@CrossOrigin(origins = {"*"})
+@RequestMapping("/api/Reclamation")
+@CrossOrigin(origins = "*")
 
 public class ReclamationCont {
 

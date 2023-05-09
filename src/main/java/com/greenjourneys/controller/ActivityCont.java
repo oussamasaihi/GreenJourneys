@@ -12,8 +12,8 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping({"/Activities"})
-@CrossOrigin(origins = {"http://localhost:4200"})
+@RequestMapping({"/api/Activities"})
+@CrossOrigin(origins = "*")
 
 public class ActivityCont extends GenericController<Activity, Long> {
 

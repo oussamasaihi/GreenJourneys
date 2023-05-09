@@ -11,8 +11,8 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping({"/Reviews"})
-@CrossOrigin( origins = {"http://localhost:4200"} )
+@RequestMapping({"/api/Reviews"})
+@CrossOrigin(origins = "*")
 
 public class ReviewCont  {
 
