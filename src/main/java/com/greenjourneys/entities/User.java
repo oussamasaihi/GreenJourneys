@@ -2,32 +2,108 @@ package com.greenjourneys.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
-
+import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor @AllArgsConstructor
 public class User {
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void setReclamations(List<Reclamation> reclamations) {
+        this.reclamations = reclamations;
+    }
+
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String firstname;
+
+    private String lastname;
+
+
+    private String username;
+
+    private String password;
+
+
+    private String token;
+
+
+    private String email;
+
+    private boolean enabled;
+    private String resetPasswordToken ;
+
+
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "idUser"),
+            inverseJoinColumns = @JoinColumn(name = "idRole")
     )
-    private long id_User ;
-    private String nom ;
-    private String prenom ;
-    private LocalDate Date_naissance ;
-    private String email ;
-    private String MotDePasse ;
-    private long numtel ;
-    private Role role ;
+    private Set<Role> roles = new HashSet<>();
+
+
+
+
+
     @JsonIgnore
     @OneToOne
     private Activity activity ;
@@ -40,7 +116,63 @@ public class User {
     @JsonIgnore
     @OneToMany
     private List<Reclamation> reclamations;
+    public Set<Role> getRoles() {
+        return this.roles;
+    }
 
+
+    public int getId() {
+        return id;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public List<Reclamation> getReclamations() {
+        return reclamations;
+    }
     @ManyToMany(
             mappedBy = "users"
     )
@@ -49,6 +181,5 @@ public class User {
     @ManyToMany(
             mappedBy = "users"
     )
-    private List<Group> groups = new ArrayList();
-
+    private List<Group> groups = new ArrayList<>();
 }

@@ -1,22 +1,24 @@
 package com.greenjourneys.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@ToString
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
+
 public class Transport {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Setter(AccessLevel.NONE)
+    private Integer idTransport;
+    @Enumerated(EnumType.STRING)
+    private Type_Moyen type_moyen;
+    private Long distance;
+    @ManyToOne
+    private User user;
 
 }

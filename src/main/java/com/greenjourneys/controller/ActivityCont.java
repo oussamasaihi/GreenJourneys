@@ -2,15 +2,11 @@ package com.greenjourneys.controller;
 
 import com.greenjourneys.entities.Activity;
 
-import com.greenjourneys.entities.ActivityType;
 import com.greenjourneys.entities.Review;
 import com.greenjourneys.entities.User;
 import com.greenjourneys.generic.GenericController;
 import com.greenjourneys.services.ActivityService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 

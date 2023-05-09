@@ -1,22 +1,13 @@
 package com.greenjourneys.services;
 
-import com.greenjourneys.entities.Accomodation;
-import com.greenjourneys.entities.Activity;
 import com.greenjourneys.entities.Review;
-import com.greenjourneys.entities.User;
-import com.greenjourneys.generic.IGenericServiceImp;
 import com.greenjourneys.repositories.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional

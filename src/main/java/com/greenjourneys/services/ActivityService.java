@@ -6,7 +6,6 @@ import com.greenjourneys.entities.User;
 import com.greenjourneys.generic.IGenericServiceImp;
 import com.greenjourneys.repositories.IActivity;
 import com.greenjourneys.repositories.IReview;
-import com.greenjourneys.repositories.IUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +26,7 @@ public class ActivityService extends IGenericServiceImp<Activity,Long> implement
 
     private final IActivity a;
     private final IReview rev;
-    IUser iUser ;
+    IUserService iUser ;
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -109,7 +108,7 @@ public class ActivityService extends IGenericServiceImp<Activity,Long> implement
         if (activityOptional.isPresent()) {
             Activity activity = activityOptional.get();
             user.setActivity(activity);
-            iUser.save(user);
+            iUser.addUser(user);
         } else {
             // handle the case when activity with the given ID is not found
         }
