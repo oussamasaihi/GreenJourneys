@@ -18,7 +18,6 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @Builder
-@Setter
 public class MyUserDetails implements UserDetails {
     User user;
 
