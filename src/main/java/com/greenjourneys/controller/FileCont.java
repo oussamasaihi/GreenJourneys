@@ -16,9 +16,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/File")
+@RequestMapping("/api/File")
 @RequiredArgsConstructor
 public class FileCont {
     private final IFileService iFileService;
@@ -39,7 +39,7 @@ public class FileCont {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
         }
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/upload/{id}")
     public ResponseEntity<ResponseMessage> uploadFileToAcc(@RequestParam("file")MultipartFile file,@PathVariable("id")Long id)
     {
@@ -57,7 +57,7 @@ public class FileCont {
 
 
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/files")
     public ResponseEntity<List<ResponseFile>> getListFiles(){
         List<ResponseFile> files = iFileService.getAllFiles().map(projectFile ->
@@ -73,7 +73,7 @@ public class FileCont {
         return ResponseEntity.status(HttpStatus.OK).body(files);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/files/{id}")
     public ResponseEntity<byte[]> getFileById(@PathVariable Long id)
     {

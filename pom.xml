@@ -68,6 +68,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>spring4</finalName>
     </build>
 
 </project>

@@ -19,9 +19,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/accomodation")
+@RequestMapping("/api/accomodation")
 @RequiredArgsConstructor
 public class AccomodationCont extends GenericController<Accomodation,Long> {
     private final IAccomodationService iAccomodationService;
@@ -34,12 +34,12 @@ public class AccomodationCont extends GenericController<Accomodation,Long> {
         return iAccomodationService.getAllChambresVides(IdAcc, DateDebRes, DateFinRes);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/DispoAccomodations/{ville}/{DateDeb}/{DateFin}/{typeschambres}")
     public Set<Accomodation> getAllDispoAcc(@PathVariable String ville, @DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable LocalDate DateDeb, @DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable LocalDate DateFin, @PathVariable List<TypeCh> typeschambres) {
         return iAccomodationService.getAllDispoAcc(ville, DateDeb, DateFin, typeschambres);
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/Disporooms/{ida}/{DateDeb}/{DateFin}/{typeschambres}")
     public Set<Chambre> verifierdiponibilitechambres(@PathVariable Long ida, @DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable LocalDate DateDeb, @DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable LocalDate DateFin, @PathVariable List<TypeCh> typeschambres) {
         return iAccomodationService.verifierdiponibilitechambres(ida, DateDeb, DateFin, typeschambres);
@@ -55,7 +55,7 @@ public class AccomodationCont extends GenericController<Accomodation,Long> {
         return iAccomodationService.getchambres(IdAcc);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/add")
     public Accomodation add(@RequestParam MultipartFile file,Accomodation accomodation) {
         String message = "";
