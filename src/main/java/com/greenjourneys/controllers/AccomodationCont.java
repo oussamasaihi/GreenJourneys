@@ -1,16 +1,13 @@
-package com.greenjourneys.controller;
+package com.greenjourneys.controllers;
 
 import com.greenjourneys.entities.*;
 import com.greenjourneys.generic.GenericController;
-import com.greenjourneys.message.ResponseMessage;
 import com.greenjourneys.repositories.IFile;
 import com.greenjourneys.services.IAccomodationService;
 import com.greenjourneys.services.IFileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

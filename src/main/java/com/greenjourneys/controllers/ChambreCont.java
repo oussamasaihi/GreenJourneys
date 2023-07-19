@@ -1,14 +1,11 @@
-package com.greenjourneys.controller;
+package com.greenjourneys.controllers;
 
-import com.greenjourneys.entities.Accomodation;
 import com.greenjourneys.entities.Chambre;
 import com.greenjourneys.generic.GenericController;
-import com.greenjourneys.services.ChambreService;
 import com.greenjourneys.services.IChambreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @CrossOrigin(origins = "*")

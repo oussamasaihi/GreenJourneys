@@ -1,9 +1,7 @@
-package com.greenjourneys.controller;
+package com.greenjourneys.controllers;
 
-import com.greenjourneys.entities.Accomodation;
 import com.greenjourneys.entities.HotelAmenity;
 import com.greenjourneys.generic.GenericController;
-import com.greenjourneys.services.IAccomodationService;
 import com.greenjourneys.services.IHotelAmenityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;

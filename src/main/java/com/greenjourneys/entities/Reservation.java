@@ -26,9 +26,9 @@ public class Reservation implements Serializable {
     LocalDate dateFin;
     int TotalDays;
     long prixtotale;
-    @ManyToMany
+    @ManyToMany(cascade =CascadeType.ALL)
     List<Chambre> chambres;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     Accomodation accommodation1;
     @ManyToOne
     User user;

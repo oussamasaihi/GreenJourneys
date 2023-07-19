@@ -1,4 +1,4 @@
-package com.greenjourneys.controller;
+package com.greenjourneys.controllers;
 
 import com.greenjourneys.entities.File;
 import com.greenjourneys.message.ResponseFile;

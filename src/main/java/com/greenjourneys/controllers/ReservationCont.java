@@ -1,10 +1,8 @@
-package com.greenjourneys.controller;
+package com.greenjourneys.controllers;
 
 import com.greenjourneys.entities.Reservation;
 import com.greenjourneys.generic.GenericController;
-import com.greenjourneys.repositories.IReservation;
 import com.greenjourneys.services.IReservationService;
-import com.greenjourneys.services.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
